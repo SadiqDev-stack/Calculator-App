@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>calculator app</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+  
+  <div class="calculator">
+    <div class="statusDisplay"></div>
+    <div class="display">
+       <div class="inputDisplay"></div>
+       <div class="outputDisplay" dir="rtl"></div>
+    </div>
+    <div class="keys">
+       <div class="numkeys">
+         <div class="key" onclick="addKey(1)">1</div>
+         <div class="key" onclick="addKey(2)">2</div>
+         <div class="key" onclick="addKey(3)">3</div>
+         <div class="key" onclick="addKey(4)">4</div>
+         <div class="key" onclick="addKey(5)">5</div>
+         <div class="key" onclick="addKey(6)">6</div>
+         <div class="key" onclick="addKey(7)">7</div>
+         <div class="key" onclick="addKey(8)">8</div>
+         <div class="key" onclick="addKey(9)">9</div>
+         <div class="key" onclick="addKey(0)">0</div>
+         <div class="key point" onclick="addKey('.')">.</div>
+         <div class="key clear">c</div>
+       </div>
+       <div class="operationKeys">
+         <div class="key" onclick="addKey('*')">×</div>
+         <div class="key" onclick="addKey('+')">+</div>
+         <div class="key" onclick="addKey('-')">-</div>
+         <div class="key" onclick="addKey('/')">÷</div>
+         <div class="key" onclick="compute()">=</div>
+       </div>
+    </div>
+  </div>
+  
+  <script src="main.js"></script>
+</body>
+</html>
