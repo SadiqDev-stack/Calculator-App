@@ -1,0 +1,17 @@
+{
+  "name": "Calculator App",
+  "short_name": "Calculator",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "black",
+  "theme": "black",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "400×400",
+      "type": "image/png"
+    }
+  ],
+  "description": "this Calculator Was Developed By Sadiq When Learning JavaScript"
+}
+
