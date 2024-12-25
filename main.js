@@ -1,13 +1,14 @@
-const $ = ele => ele.includes('*') ? 
-document.querySelectorAll(ele.replace('*',''))
-: document.querySelector(ele);
-
+const $ = ele => ele.includes('*') ?
+  document.querySelectorAll(ele.replace('*', '')) :
+  document.querySelector(ele);
+  
+  
 const maxDigit = 20;
-const decimalPlaces = 2
+const decimalPlaces = 2;
 let inputLength = 0;
 let inputtedValue = "";
 let result = "";
-let status = "good";
+let status = "good"
 
 const display = $('.display');
 const statusDisplay = $('.statusDisplay');
@@ -20,13 +21,33 @@ const statusColors = {
   bad: "red"
 }
 
-
 const addKey = key => {
-  result = ""
   if(inputLength < maxDigit){
     inputtedValue += key
   }else{
     status = "medium"
+  }
+}
+
+setInterval(e => {
+  inputDisplay.textContent = inputtedValue.replaceAll('/','รท').replaceAll('*','ร—');
+  inputLength = inputtedValue.length;
+  outputDisplay.textContent = result;
+  statusDisplay.style.background = statusColors[status]
+})
+
+const compute = e => {
+  if(inputtedValue){
+    try{
+      result = Number(eval(inputtedValue)).toFixed(decimalPlaces)
+      status = "good"
+    }catch(er){
+      result = "Syntax Error"
+      status = "bad"
+    }
+  }else{
+    status = "good"
+    result = "Empty"
   }
 }
 
@@ -37,37 +58,18 @@ const clear = e => {
   status = "good"
 }
 
-const compute = e => {
-  if(inputtedValue){
-  try{
-    result = Number(eval(inputtedValue)).toFixed(decimalPlaces)
-    status = "good"
-  }catch(er){
-    result = "Syntax Error";
-    status = "bad"
-  }
-  }else{
-    result = "Empty"
-    status = "good"
-  }
-}
-
-setInterval(e => {
-  inputDisplay.textContent = inputtedValue.replaceAll('/','÷').replaceAll('*','×');
-  inputLength = inputtedValue.length;
-  outputDisplay.textContent = result;
-  statusDisplay.style.background = statusColors[status]
-})
-
 clearBtn.onclick = e => {
-  result = "";
+  inputtedValue = inputtedValue.slice(0,-1)
   status = "good"
-  inputtedValue = inputtedValue.slice(0,-1);
+  result = ""
 }
 
 let clearTimer;
-const clearPressDuration = .3; // in seconds
-clearBtn.addEventListener('touchstart',e => {
-  clearTimer = setTimeout(clear,clearPressDuration * 1000);
-  clearBtn.addEventListener('touchend',e => clearInterval(clearTimer))
+let clearActionDuration = .3;
+clearBtn.addEventListener("touchstart",e => {
+  clearTimer = setTimeout(clear,clearActionDuration * 1000)
+  clearBtn.addEventListener("touchend",e => clearTimeout(clearTimer))
 })
+
+
+navigator.serviceWorker.register('/sw.js')
